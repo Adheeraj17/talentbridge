@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TalentBridge is an enterprise-grade smart job portal connecting job seekers, recruiters, and platform administrators.">
+  <title>TalentBridge - Smart Job Portal</title>
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Google Fonts - Inter & Material Symbols Rounded -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+
+  <!-- GLOBAL WRAPPER -->
+  <div id="app" class="app-container">
+    
+    <!-- ================= PUBLIC/GUEST LAYOUT ================= -->
+    <div id="public-layout" class="main-content">
+      <!-- Public Navbar -->
+      <nav class="public-navbar">
+        <a href="#landing" class="logo-icon-wrapper" style="display: flex; align-items: center; gap: 8px;">
+          <div class="logo-icon">
+            <span class="material-symbols-rounded filled">hub</span>
+          </div>
+          <span class="logo-text">TalentBridge</span>
+        </a>
+        <div class="nav-links">
+          <a href="#landing" class="nav-link active" id="nav-landing">Home</a>
+          <a href="#about" class="nav-link" id="nav-about">About</a>
+          <a href="#pricing" class="nav-link" id="nav-pricing">Pricing</a>
+          <a href="#faq" class="nav-link" id="nav-faq">FAQ</a>
+          <a href="#contact" class="nav-link" id="nav-contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a href="#login" class="btn btn-secondary btn-sm">Login</a>
+          <a href="#register" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </nav>
+
+      <!-- Public Scroll Content Area -->
+      <div id="public-content">
+        <!-- Views injected dynamically or toggled via active classes -->
+      </div>
+
+      <!-- Public Footer -->
+      <footer class="public-footer">
+        <div class="footer-grid">
+          <div class="footer-column">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+              <div class="logo-icon">
+                <span class="material-symbols-rounded filled">hub</span>
+              </div>
+              <span class="logo-text" style="color: white;">TalentBridge</span>
+            </div>
+            <p>Next-generation smart recruitment ecosystem powered by advanced matching and automation.</p>
+          </div>
+          <div class="footer-column">
+            <h4 class="footer-column-title">For Seekers</h4>
+            <ul class="footer-links">
+              <li><a href="#seeker-search" class="footer-link">Search Jobs</a></li>
+              <li><a href="#seeker-dashboard" class="footer-link">Seeker Dashboard</a></li>
+              <li><a href="#register" class="footer-link">Build Profile</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4 class="footer-column-title">For Employers</h4>
+            <ul class="footer-links">
+              <li><a href="#register" class="footer-link">Post a Job</a></li>
+              <li><a href="#pricing" class="footer-link">Pricing Plans</a></li>
+              <li><a href="#about" class="footer-link">Talent Sourcing</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4 class="footer-column-title">Legal & Security</h4>
+            <ul class="footer-links">
+              <li><a href="#privacy" class="footer-link">Privacy Policy</a></li>
+              <li><a href="#terms" class="footer-link">Terms & Conditions</a></li>
+              <li><a href="#contact" class="footer-link">Support Desk</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 TalentBridge Inc. All rights reserved.</p>
+          <div style="display: flex; gap: var(--space-2);">
+            <a href="#" class="footer-link">LinkedIn</a>
+            <a href="#" class="footer-link">Twitter</a>
+            <a href="#" class="footer-link">GitHub</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+
+    <!-- ================= ENTERPRISE PANEL LAYOUT (Seeker, Recruiter, Admin) ================= -->
+    <div id="panel-layout" class="dashboard-layout" style="display: none;">
+      <!-- Collapsible Sidebar -->
+      <aside id="sidebar" class="dashboard-sidebar">
+        <div class="sidebar-logo">
+          <div class="logo-icon">
+            <span class="material-symbols-rounded filled">hub</span>
+          </div>
+          <span class="logo-text">TalentBridge</span>
+          <button id="sidebar-collapse-btn" class="btn-icon btn-sm" style="margin-left: auto; border: none; background: transparent;">
+            <span class="material-symbols-rounded">menu_open</span>
+          </button>
+        </div>
+        
+        <!-- Sidebar Menu Items (Injected by app.js based on role) -->
+        <nav class="sidebar-menu" id="sidebar-menu-list">
+          <!-- Populated by JS -->
+        </nav>
+
+        <!-- Sidebar User Profile Block -->
+        <div class="sidebar-profile">
+          <div class="user-avatar avatar-sm" id="sidebar-avatar">TB</div>
+          <div class="sidebar-profile-info">
+            <span class="sidebar-user-name" id="sidebar-username">Guest User</span>
+            <span class="sidebar-user-role" id="sidebar-userrole">Job Seeker</span>
+          </div>
+          <a href="#login" class="btn-icon btn-sm" id="btn-logout" style="margin-left: auto; border:none; background:transparent;" title="Log out">
+            <span class="material-symbols-rounded">logout</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Dashboard Main View Container -->
+      <div id="panel-main" class="dashboard-main">
+        <!-- Dashboard Inner Sticky Header -->
+        <header class="dashboard-navbar">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <button id="sidebar-mobile-toggle" class="btn-icon mobile-nav-toggle">
+              <span class="material-symbols-rounded">menu</span>
+            </button>
+            <h1 class="card-title" id="panel-header-title">Dashboard</h1>
+          </div>
+          
+          <div class="nav-actions">
+            <!-- Notifications Dropdown -->
+            <div style="position: relative;">
+              <button class="btn-icon" id="notification-bell-btn">
+                <span class="material-symbols-rounded">notifications</span>
+                <span id="unread-notification-count" class="badge-danger" style="position: absolute; top: 4px; right: 4px; border-radius: 50%; width: 8px; height: 8px; display: block;"></span>
+              </button>
+              <div id="notification-dropdown" class="sandbox-menu" style="right: 0; left: auto; width: 320px; font-weight: normal;">
+                <div class="sandbox-header" style="display: flex; justify-content: space-between; align-items: center;">
+                  <span>Notifications</span>
+                  <a href="#" id="mark-notifications-read-btn" style="color: var(--primary); text-transform: none; font-size: 0.7rem;">Mark all read</a>
+                </div>
+                <div id="notification-dropdown-list" style="max-height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding: 4px;">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+            
+            <a href="#seeker-profile" id="panel-profile-shortcut" class="user-avatar avatar-sm">TB</a>
+          </div>
+        </header>
+
+        <!-- Dynamic Panel Content Injection -->
+        <main class="dashboard-content-wrapper" id="panel-content">
+          <!-- Views injected by router -->
+        </main>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= PERSISTENT PORTFOLIO ROLE SWITCHER WIDGET ================= -->
+  <div class="sandbox-widget" id="sandbox-widget">
+    <button class="sandbox-toggle" id="sandbox-toggle-btn" title="Developer Role Switcher">
+      <span class="material-symbols-rounded">construction</span>
+    </button>
+    <div class="sandbox-menu">
+      <div class="sandbox-header">Switch User Role</div>
+      <button class="sandbox-role-btn active" data-role="guest">
+        <span class="material-symbols-rounded">public</span> Guest / Public
+      </button>
+      <button class="sandbox-role-btn" data-role="seeker">
+        <span class="material-symbols-rounded">person</span> Job Seeker
+      </button>
+      <button class="sandbox-role-btn" data-role="recruiter">
+        <span class="material-symbols-rounded">business_center</span> Recruiter
+      </button>
+      <button class="sandbox-role-btn" data-role="admin">
+        <span class="material-symbols-rounded">admin_panel_settings</span> Administrator
+      </button>
+      <div class="sandbox-divider" style="margin: 4px 0;"></div>
+      <div style="font-size: 0.725rem; color: var(--text-secondary); padding: 4px var(--space-1); line-height: 1.3;">
+        Use this tool to test any customer workflow immediately in high-fidelity!
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SNACKBAR/TOAST NOTIFICATION ENGINE ================= -->
+  <div id="toast-container" class="snackbar-container"></div>
+
+  <!-- ================= DYNAMIC DIALOG MODALS ================= -->
+  
+  <!-- Job Apply Modal -->
+  <div class="modal-overlay" id="apply-job-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Apply to Job</h3>
+        <button class="btn-icon btn-sm modal-close-btn" style="border: none; background: transparent;"><span class="material-symbols-rounded">close</span></button>
+      </div>
+      <form id="apply-job-form">
+        <input type="hidden" id="apply-job-id">
+        <div class="modal-body">
+          <div class="alert alert-info">
+            <span class="material-symbols-rounded" style="margin-top: 2px;">info</span>
+            <div>
+              <div class="alert-title">Applying for</div>
+              <div class="alert-message" id="apply-job-title-desc">Senior Software Engineer at TechCorp</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="apply-resume-select">Choose Resume</label>
+            <select id="apply-resume-select" class="form-control" required>
+              <option value="resume_current.pdf">Default_Resume_2026.pdf (Uploaded)</option>
+              <option value="new">Upload a new resume...</option>
+            </select>
+          </div>
+          <div class="form-group" id="apply-new-file-group" style="display: none;">
+            <label class="form-label">Upload New PDF File</label>
+            <div style="border: 2px dashed var(--border); padding: var(--space-2); border-radius: var(--radius); text-align: center; cursor: pointer; position: relative;">
+              <span class="material-symbols-rounded" style="font-size: 2.5rem; color: var(--text-muted);">upload_file</span>
+              <p style="font-size: 0.85rem; font-weight: 500; margin-top: 4px;">Click to select file or drag & drop</p>
+              <input type="file" id="apply-new-file" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="apply-cover-letter">Cover Letter (Optional)</label>
+            <textarea id="apply-cover-letter" class="form-control" rows="4" placeholder="Briefly introduce yourself and share why you are a fit..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-close-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Schedule Interview Modal -->
+  <div class="modal-overlay" id="schedule-interview-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Schedule Candidate Interview</h3>
+        <button class="btn-icon btn-sm modal-close-btn" style="border: none; background: transparent;"><span class="material-symbols-rounded">close</span></button>
+      </div>
+      <form id="schedule-interview-form">
+        <input type="hidden" id="schedule-application-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Candidate Name</label>
+            <input type="text" id="schedule-candidate-name" class="form-control" readonly>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="schedule-type">Interview Type</label>
+            <select id="schedule-type" class="form-control" required>
+              <option value="Technical Screening">Technical Screening</option>
+              <option value="System Design Round">System Design Round</option>
+              <option value="Product Sense & UX Interview">Product Sense & UX Interview</option>
+              <option value="Behavioral / Leadership Pitch">Behavioral / Leadership Pitch</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="schedule-date">Date</label>
+              <input type="date" id="schedule-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="schedule-time">Time</label>
+              <input type="time" id="schedule-time" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="schedule-interviewer">Interviewer(s)</label>
+            <input type="text" id="schedule-interviewer" class="form-control" value="Sarah Jenkins (Engineering Manager)" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="schedule-link">Meeting Link</label>
+            <input type="url" id="schedule-link" class="form-control" value="https://meet.google.com/tb-recruitment" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-close-btn">Cancel</button>
+          <button type="submit" class="btn btn-success">Schedule & Notify</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Resume Preview Modal -->
+  <div class="modal-overlay" id="resume-preview-modal">
+    <div class="modal-container" style="max-width: 750px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="resume-preview-title">Resume Preview</h3>
+        <div style="display: flex; gap: 8px;">
+          <button id="resume-download-btn" class="btn btn-secondary btn-sm"><span class="material-symbols-rounded">download</span> Download PDF</button>
+          <button class="btn-icon btn-sm modal-close-btn" style="border: none; background: transparent;"><span class="material-symbols-rounded">close</span></button>
+        </div>
+      </div>
+      <div class="modal-body" style="background-color: var(--background); padding: var(--space-3);">
+        <div id="resume-preview-doc-body" style="background-color: white; border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-4); box-shadow: var(--shadow-sm); font-size: 0.9rem; line-height: 1.6;">
+          <!-- Dynamically populated PDF skeleton layout -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Javascript Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
